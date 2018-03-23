@@ -21,6 +21,7 @@ var ethval = 0;
 var iotval = 0;
 var total = 0;
 
+app.use(express.static("./public"));
 app.get('/', function (req, res) {
 
   console.log(`${req.method} request for '${req.url}'`);
