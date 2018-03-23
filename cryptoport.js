@@ -42,12 +42,12 @@ app.get('/', function (req, res) {
   iotval = (iot*iotshare).toFixed(2);
   total = (Number(btcval)+Number(ethval)+Number(iotval)).toFixed(2);
 
-  res.render('index.ejs', {BTC: btc, ETH: eth, IOT: iot, 
-                           BTCSHR: btcshare, ETHSHR: ethshare, IOTSHR: iotshare,
-                           BTCVAL: btcval, ETHVAL: ethval, IOTVAL: iotval,
-                           TOTAL: total});
+  // res.render('index.ejs', {BTC: btc, ETH: eth, IOT: iot, 
+  //                          BTCSHR: btcshare, ETHSHR: ethshare, IOTSHR: iotshare,
+  //                          BTCVAL: btcval, ETHVAL: ethval, IOTVAL: iotval,
+  //                          TOTAL: total});
 
-  //res.render('index.html', { pageCountMessage : count, dbInfo: dbDetails });
+  res.render('test');
   //res.render('Hello World');
 
 });
