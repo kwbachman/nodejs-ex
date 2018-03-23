@@ -6,7 +6,6 @@ var express = require('express'),
     app     = express();
 
 app.set('view engine', 'ejs');    
-//app.engine('html', require('ejs').renderFile);
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
@@ -21,12 +20,6 @@ var btcval = 0;
 var ethval = 0;
 var iotval = 0;
 var total = 0;
-
-app.use(function(req, res, next) {
-  console.log(`${req.method} request for '${req.url}'`);
-  next();
-});
-
 
 app.get('/', function (req, res) {
 
@@ -48,13 +41,10 @@ app.get('/', function (req, res) {
   iotval = (iot*iotshare).toFixed(2);
   total = (Number(btcval)+Number(ethval)+Number(iotval)).toFixed(2);
 
-  // res.render('index.ejs', {BTC: btc, ETH: eth, IOT: iot, 
-  //                          BTCSHR: btcshare, ETHSHR: ethshare, IOTSHR: iotshare,
-  //                          BTCVAL: btcval, ETHVAL: ethval, IOTVAL: iotval,
-  //                          TOTAL: total});
-
-  res.render('test');
-  //res.render('Hello World');
+  res.render('index.ejs', {BTC: btc, ETH: eth, IOT: iot, 
+                           BTCSHR: btcshare, ETHSHR: ethshare, IOTSHR: iotshare,
+                           BTCVAL: btcval, ETHVAL: ethval, IOTVAL: iotval,
+                           TOTAL: total});
 
 });
 
