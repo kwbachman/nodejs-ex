@@ -4,8 +4,9 @@ var coinmarketcap = new CoinMarketCap();
 
 var express = require('express'),
     app     = express();
-    
-app.engine('html', require('ejs').renderFile);
+
+app.set('view engine', 'ejs');    
+//app.engine('html', require('ejs').renderFile);
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
@@ -22,6 +23,8 @@ var iotval = 0;
 var total = 0;
 
 app.get('/', function (req, res) {
+
+  console.log(`${req.method} request for '${req.url}'`);
 
   // If you want to check multiple coins, use multi():
   coinmarketcap.multi(coins => {
@@ -40,11 +43,12 @@ app.get('/', function (req, res) {
   total = (Number(btcval)+Number(ethval)+Number(iotval)).toFixed(2);
 
   res.render('index.ejs', {BTC: btc, ETH: eth, IOT: iot, 
-                         BTCSHR: btcshare, ETHSHR: ethshare, IOTSHR: iotshare,
-                         BTCVAL: btcval, ETHVAL: ethval, IOTVAL: iotval,
-                         TOTAL: total});
+                           BTCSHR: btcshare, ETHSHR: ethshare, IOTSHR: iotshare,
+                           BTCVAL: btcval, ETHVAL: ethval, IOTVAL: iotval,
+                           TOTAL: total});
 
   //res.render('index.html', { pageCountMessage : count, dbInfo: dbDetails });
+  //res.render('Hello World');
 
 });
 
