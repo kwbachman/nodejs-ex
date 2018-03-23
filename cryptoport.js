@@ -22,6 +22,12 @@ var ethval = 0;
 var iotval = 0;
 var total = 0;
 
+app.use(function(req, res, next) {
+  console.log(`${req.method} request for '${req.url}'`);
+  next();
+});
+
+
 app.get('/', function (req, res) {
 
   console.log(`${req.method} request for '${req.url}'`);
